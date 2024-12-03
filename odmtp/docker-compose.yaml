@@ -1,0 +1,19 @@
+services:
+  odmtp:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      SECRET_KEY: "mysecretkey"
+      DEBUG: False
+      HOST: 0.0.0.0 # Should be 0.0.0.0
+      PORT: 8000 # Port inside the container
+      BEACON_API_URL: "http://beacon:5050/api/g_variants" # change host with beacon docker container name
+    volumes:
+      - .:/app
+    networks:
+      - beacon-net # docker network of beacon service
+
+networks:
+  beacon-net: # docker network of beacon service
+    external: true

@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables and secrets
+.env
+
+# Dependency directories
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.whl
+*.dist-info
+env/
+venv/
+.venv/
+
+# Virtualenv and Python environment
+.pyvenv/
+*.env
+
+# Local Django files
+db.sqlite3
+*.log
+
+# Testing
+.tox/
+.nox/
+.coverage
+coverage.xml
+*.cover
+.hypothesis/
+
+# CI/CD and IDE configs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg
+*.manifest
+*.spec
+
+# Docker specific files
+Dockerfile~
+docker-compose.override.yml
+
+# Node.js files (if frontend is present)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*.swp
+*.swo
+*.DS_Store

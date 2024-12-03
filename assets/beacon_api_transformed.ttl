@@ -1,0 +1,38 @@
+@prefix ns1: <http://ourlab.org/ressources/> .
+@prefix ns2: <http://biohackathon.org/resource/faldo#> .
+@prefix ns3: <http://purl.obolibrary.org/obo/> .
+@prefix ns4: <http://semanticscience.org/resource/> .
+@prefix ns5: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:ol_cohortCINECA_synthetic_cohort_EUROPE_UK1 a ns3:OBI_0000181 ;
+    ns1:ol_hasNumberOfVariants 1 ;
+    ns4:SIO_000219 ns1:ol_variant7cf0d1fe-a2b5-11ef-9488-0242ac120002%3AC%3AG .
+
+ns1:ol_alternatebaseG a ns3:GENO_0000002 ;
+    ns4:SIO_000300 "G" .
+
+ns1:ol_chromosome6 a ns3:SO_0000353 ;
+    ns4:SIO_000300 "6" .
+
+ns1:ol_exactposition108561495 a ns2:ExactPosition ;
+    ns2:position 108561495 .
+
+ns1:ol_exactposition108561496 a ns2:ExactPosition ;
+    ns2:position 108561496 .
+
+ns1:ol_location108561495_108561496 a ns2:Region ;
+    ns2:begin ns1:ol_exactposition108561495 ;
+    ns2:end ns1:ol_exactposition108561496 .
+
+ns1:ol_referencebaseC a ns3:GENO_0000036 ;
+    ns4:SIO_000300 "C" .
+
+ns1:ol_variant7cf0d1fe-a2b5-11ef-9488-0242ac120002%3AC%3AG a ns3:SO_0001059 ;
+    ns2:location ns1:ol_location108561495_108561496 ;
+    ns2:reference ns1:ol_chromosome6 ;
+    ns3:GENO_0000382 ns1:ol_alternatebaseG,
+        ns1:ol_referencebaseC ;
+    ns3:GENO_0000683 ns3:GENO_0000512 ;
+    ns5:identifier "NC_00006.11:g.108561495C>G" .
+

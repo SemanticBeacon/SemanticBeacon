@@ -1,0 +1,210 @@
+@prefix oslc: <http://open-services.net/ns/core#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> . 
+#@prefix rml: <http://w3id.org/rml/> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+# https://github.com/The-Sequence-Ontology/SO-Ontologies
+# https://github.com/monarch-initiative/GENO-ontology
+# http://obofoundry.org/ontology/obi.html
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+# http://biohackathon.org/resource/faldo#
+@prefix faldo: <http://biohackathon.org/resource/faldo#> .
+@prefix ol: <http://ourlab.org/ressources/ol_> .
+# https://github.com/MaastrichtU-IDS/semanticscience/blob/master/ontology/sio.owl
+@prefix sio: <http://semanticscience.org/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+# 
+_:PopulationMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*]" ] ;
+    
+  ## Describe a population "cohort"
+  rr:subjectMap [
+    rr:template "ol:cohort{id}" ;
+    rr:class obo:OBI_0000181 
+
+  ] ;
+  
+  ## TODO (bonus) hasNumberOfVariants -> which ontology ? look at SIO or RO 
+  rr:predicateObjectMap [ 
+    rr:predicate ol:hasNumberOfVariants ;
+    rr:objectMap [ rml:reference "resultsCount" ;
+                   rr:termType rr:Literal ;
+                   rr:datatype xsd:integer ]
+  ] ;
+  rr:predicateObjectMap [
+    rr:predicate sio:SIO_000219 ;
+    rr:objectMap [ #JSONPath expression that is correct, but does not work for morph-kgc
+                   #rr:template "ol:variant{results[*].variantInternalId}" ;
+                   rr:template "ol:variant{results.variantInternalId}" ;
+                   rr:termType rr:IRI 
+                 ] 
+  ] .
+
+_:VariantMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*].results[*]" ] ;
+  
+  ## Variant instance of obo:SO_0001059, obo:GENO_0000694
+  rr:subjectMap [
+    rr:template "ol:variant{variantInternalId}" ;
+    rr:class obo:SO_0001059
+  ] ;
+  ## identifier
+  rr:predicateObjectMap [ 
+    rr:predicate schema:identifier ;
+    rr:objectMap [ rml:reference "identifiers.genomicHGVSId" ]
+  ] ;
+
+  ## localization 
+  rr:predicateObjectMap [ 
+    rr:predicate faldo:location ;
+    rr:objectMap [ rr:template "ol:location{variation.location.interval.start.value}_{variation.location.interval.end.value}" ]
+  ] ;
+  ## cela ne semble pas être disponible dans les informations obtenus fra le beacon
+  #rr:predicateObjectMap [ 
+  #  rr:predicate faldo:assemby ;
+  #  rr:objectMap [ rr:template "ol:{_position.assemblyId}" ]
+  #] ;
+  ## cela marche maintenant ! et il y a changement pour la propriete 
+  ## chromosome
+  rr:predicateObjectMap [ 
+    rr:predicate faldo:reference ; #obo:GENO_0000207 ;
+    rr:objectMap [ rr:template "ol:chromosome{variation.location.chr}" ]
+  ] ;
+  ## allele
+  rr:predicateObjectMap [ 
+    rr:predicate obo:GENO_0000683 ;
+    rr:objectMap [ rr:constant obo:GENO_0000512 ]  
+  ] ;
+  ## link to the ref allele
+  rr:predicateObjectMap [ 
+    rr:predicate obo:GENO_0000382 ;
+    rr:objectMap [ rr:template "ol:referencebase{variation.referenceBases}" ] 
+  ] ;
+  ## link to the alt allele
+  rr:predicateObjectMap [ 
+    rr:predicate obo:GENO_0000382 ;
+    rr:objectMap [ rr:template "ol:alternatebase{variation.alternateBases}" ] 
+  ] .
+
+_:ReferenceBaseMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*].results[*].variation" ] ;
+  ## reference allele
+  rr:subjectMap [
+    rr:template "ol:referencebase{referenceBases}" ;
+    rr:class obo:GENO_0000036
+  ] ;
+  ## hasValue
+  rr:predicateObjectMap [ 
+    rr:predicate sio:SIO_000300 ;
+    rr:objectMap [ rml:reference "referenceBases" ]
+  ] .
+
+_:AlternateBaseMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*].results[*].variation" ] ;
+  ## alternative allele
+  rr:subjectMap [
+    rr:template "ol:alternatebase{alternateBases}" ;
+    rr:class obo:GENO_0000002
+  ] ;
+  ## hasValue
+  rr:predicateObjectMap [ 
+    rr:predicate sio:SIO_000300 ;
+    rr:objectMap [ rml:reference "alternateBases" ]
+  ] .
+
+_:BeginPositionMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*].results[*].variation.location.interval" ] ;
+  rr:subjectMap [
+    rr:template "ol:exactposition{start.value}" ;
+    rr:class faldo:ExactPosition
+  ] ;
+  rr:predicateObjectMap [ 
+    rr:predicate faldo:position ;
+    rr:objectMap [ rml:reference "start.value" ;
+                   rr:termType rr:Literal ;
+                   rr:datatype xsd:integer ]
+  ] .
+
+_:EndPositionMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*].results[*].variation.location.interval" ] ;
+  rr:subjectMap [
+    rr:template "ol:exactposition{end.value}" ;
+    rr:class faldo:ExactPosition
+  ] ;
+  rr:predicateObjectMap [ 
+    rr:predicate faldo:position ;
+    rr:objectMap [ rml:reference "end.value" ;
+                   rr:termType rr:Literal ;
+                   rr:datatype xsd:integer ]
+  ] .
+
+## cela ne semble pas être disponible dans les informations obtenus fra le beacon
+## link to reference genome
+#res:AssemblyMap a rr:TriplesMap ;
+#  rml:logicalSource [
+#    rml:source "reponse_beacon.json" ;
+#    rml:referenceFormulation ql:JSONPath ;
+#    rml:iterator "$.response.resultSets[*].results[*]._position" ] ;
+#  rr:subjectMap [
+#    rr:template "ol:{assemblyId}" ;
+#    rr:class obo:SO_0001248
+#  ] .
+
+# cela ne marche pas encore, il faut extraire les informations pertinentes
+## Instance of a Chromosome https://ontobee.org/ontology/SIO?iri=http://semanticscience.org/resource/SIO_000899 ? 
+## Better use https://ontobee.org/ontology/SO?iri=http://purl.obolibrary.org/obo/SO_0000353 
+## To be checked with other colleagues 
+_:ChromosomeMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*].results[*].variation.location" ] ;
+  rr:subjectMap [
+    rr:template "ol:chromosome{chr}" ;
+    rr:class obo:SO_0000353 
+  ] ;
+  ## hasValue
+  rr:predicateObjectMap [ 
+    rr:predicate sio:SIO_000300 ;
+    rr:objectMap [ rml:reference "chr" ]
+  ] .
+
+_:RegionMap a rr:TriplesMap ;
+  rml:logicalSource [
+    rml:source "reponse_beacon.json" ;
+    rml:referenceFormulation ql:JSONPath ;
+    rml:iterator "$.response.resultSets[*].results[*].variation.location.interval" ] ;
+  ## FALDO Region
+  rr:subjectMap [
+      rr:template "ol:location{start.value}_{end.value}" ;
+      rr:class faldo:Region
+  ] ;
+  ## Changement pour faire une instance de Position
+  rr:predicateObjectMap [ 
+    rr:predicate faldo:begin ; 
+    rr:objectMap [ rr:template "ol:exactposition{start.value}" ]
+  ] ;
+  ## Changement pour faire une instance de Position
+  rr:predicateObjectMap [ 
+    rr:predicate faldo:end ;
+    rr:objectMap [ rr:template "ol:exactposition{end.value}" ]
+  ] .
