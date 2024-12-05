@@ -1,0 +1,4 @@
+# ODMTP
+http GET http://127.0.0.1:8000/beacon/query
+# Beacon API
+http GET http://localhost:5050/api/g_variants

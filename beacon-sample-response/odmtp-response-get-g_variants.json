@@ -1,0 +1,272 @@
+@prefix hydra: <http://www.w3.org/ns/hydra/core#> .
+@prefix ns1: <http://schema.org/> .
+@prefix ns2: <http://purl.obolibrary.org/obo/> .
+@prefix ns3: <http://biohackathon.org/resource/faldo#> .
+@prefix ns4: <http://semanticscience.org/resource/> .
+@prefix ns5: <http://ourlab.org/ressources/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix purl: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testtfpf: <http://127.0.0.1:8000/beacon/query> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+testtfpf:metadata {
+    testtfpf:metadata ns1:primaryTopic testtfpf: .
+
+    testtfpf:dataset a void:Dataset,
+            hydra:Collection ;
+        void:subset testtfpf: ;
+        void:uriLookupEndpoint "http://127.0.0.1:8000/beacon/query{?subject,predicate,object}" ;
+        hydra:member testtfpf:dataset ;
+        hydra:search _:triplePattern .
+
+    testtfpf: a hydra:PartialCollectionView,
+            prov:Entity ;
+        purl:description "Triples from the beacon api matching the pattern {?s=None, ?p=None, ?o=None}" ;
+        purl:source testtfpf:dataset ;
+        purl:title "TPF Test API" ;
+        void:subset testtfpf: ;
+        void:triples "44"^^xsd:int ;
+        hydra:first <http://127.0.0.1:8000/beacon/query?page=1> ;
+        hydra:itemsPerPage "168"^^xsd:int ;
+        hydra:next <http://127.0.0.1:8000/beacon/query?page=2> ;
+        hydra:totalItems "44"^^xsd:int ;
+        prov:wasDerivedFrom <http://127.0.0.1:5050/api/g_variants> ;
+        prov:wasGeneratedBy <https://github.com/your-repo/test-api-tpf> .
+
+    _:object hydra:property rdf:object ;
+        hydra:variable "object" .
+
+    _:predicate hydra:property rdf:predicate ;
+        hydra:variable "predicate" .
+
+    _:subject hydra:property rdf:subject ;
+        hydra:variable "subject" .
+
+    _:triplePattern hydra:mapping _:object,
+            _:predicate,
+            _:subject ;
+        hydra:template "http://127.0.0.1:8000/beacon/query{?subject,predicate,object}" ;
+        hydra:variableRepresentation hydra:ExplicitRepresentation .
+}
+
+{
+    ns5:ol_cohortsynthetic1 a ns2:OBI_0000181 ;
+        ns5:ol_hasNumberOfVariants 44 ;
+        ns4:SIO_000219 ns5:ol_variant20bc1842-a5b9-11ef-b18f-0242ac130002%3AT%3AC,
+            ns5:ol_variant20bc3214-a5b9-11ef-b18f-0242ac130002%3AG%3AT,
+            ns5:ol_variant20bc4dee-a5b9-11ef-b18f-0242ac130002%3AT%3AC,
+            ns5:ol_variant20bc6860-a5b9-11ef-b18f-0242ac130002%3AG%3AA,
+            ns5:ol_variant20bc832c-a5b9-11ef-b18f-0242ac130002%3AC%3AT,
+            ns5:ol_variant20bc9e48-a5b9-11ef-b18f-0242ac130002%3AC%3AT,
+            ns5:ol_variant20bcb9e6-a5b9-11ef-b18f-0242ac130002%3AT%3AC,
+            ns5:ol_variant20bcd4d0-a5b9-11ef-b18f-0242ac130002%3AG%3AA,
+            ns5:ol_variant20bcf078-a5b9-11ef-b18f-0242ac130002%3AC%3AT,
+            ns5:ol_variant20bd0afe-a5b9-11ef-b18f-0242ac130002%3AA%3AT .
+
+    ns5:ol_exactposition10092495 a ns3:ExactPosition ;
+        ns3:position 10092495 .
+
+    ns5:ol_exactposition10092496 a ns3:ExactPosition ;
+        ns3:position 10092496 .
+
+    ns5:ol_exactposition10092537 a ns3:ExactPosition ;
+        ns3:position 10092537 .
+
+    ns5:ol_exactposition10092538 a ns3:ExactPosition ;
+        ns3:position 10092538 .
+
+    ns5:ol_exactposition10092559 a ns3:ExactPosition ;
+        ns3:position 10092559 .
+
+    ns5:ol_exactposition10092560 a ns3:ExactPosition ;
+        ns3:position 10092560 .
+
+    ns5:ol_exactposition10092629 a ns3:ExactPosition ;
+        ns3:position 10092629 .
+
+    ns5:ol_exactposition10092630 a ns3:ExactPosition ;
+        ns3:position 10092630 .
+
+    ns5:ol_exactposition10092698 a ns3:ExactPosition ;
+        ns3:position 10092698 .
+
+    ns5:ol_exactposition10092699 a ns3:ExactPosition ;
+        ns3:position 10092699 .
+
+    ns5:ol_exactposition10092873 a ns3:ExactPosition ;
+        ns3:position 10092873 .
+
+    ns5:ol_exactposition10092874 a ns3:ExactPosition ;
+        ns3:position 10092874 .
+
+    ns5:ol_exactposition10093023 a ns3:ExactPosition ;
+        ns3:position 10093023 .
+
+    ns5:ol_exactposition10093024 a ns3:ExactPosition ;
+        ns3:position 10093024 .
+
+    ns5:ol_exactposition10093032 a ns3:ExactPosition ;
+        ns3:position 10093032 .
+
+    ns5:ol_exactposition10093033 a ns3:ExactPosition ;
+        ns3:position 10093033 .
+
+    ns5:ol_exactposition10093100 a ns3:ExactPosition ;
+        ns3:position 10093100 .
+
+    ns5:ol_exactposition10093101 a ns3:ExactPosition ;
+        ns3:position 10093101 .
+
+    ns5:ol_exactposition10093154 a ns3:ExactPosition ;
+        ns3:position 10093154 .
+
+    ns5:ol_exactposition10093155 a ns3:ExactPosition ;
+        ns3:position 10093155 .
+
+    ns5:ol_location10092495_10092496 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10092495 ;
+        ns3:end ns5:ol_exactposition10092496 .
+
+    ns5:ol_location10092537_10092538 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10092537 ;
+        ns3:end ns5:ol_exactposition10092538 .
+
+    ns5:ol_location10092559_10092560 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10092559 ;
+        ns3:end ns5:ol_exactposition10092560 .
+
+    ns5:ol_location10092629_10092630 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10092629 ;
+        ns3:end ns5:ol_exactposition10092630 .
+
+    ns5:ol_location10092698_10092699 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10092698 ;
+        ns3:end ns5:ol_exactposition10092699 .
+
+    ns5:ol_location10092873_10092874 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10092873 ;
+        ns3:end ns5:ol_exactposition10092874 .
+
+    ns5:ol_location10093023_10093024 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10093023 ;
+        ns3:end ns5:ol_exactposition10093024 .
+
+    ns5:ol_location10093032_10093033 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10093032 ;
+        ns3:end ns5:ol_exactposition10093033 .
+
+    ns5:ol_location10093100_10093101 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10093100 ;
+        ns3:end ns5:ol_exactposition10093101 .
+
+    ns5:ol_location10093154_10093155 a ns3:Region ;
+        ns3:begin ns5:ol_exactposition10093154 ;
+        ns3:end ns5:ol_exactposition10093155 .
+
+    ns5:ol_referencebaseA a ns2:GENO_0000036 ;
+        ns4:SIO_000300 "A" .
+
+    ns5:ol_variant20bc1842-a5b9-11ef-b18f-0242ac130002%3AT%3AC a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10092495_10092496 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseC,
+            ns5:ol_referencebaseT ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10092495T>C" .
+
+    ns5:ol_variant20bc3214-a5b9-11ef-b18f-0242ac130002%3AG%3AT a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10092537_10092538 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseT,
+            ns5:ol_referencebaseG ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10092537G>T" .
+
+    ns5:ol_variant20bc4dee-a5b9-11ef-b18f-0242ac130002%3AT%3AC a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10092559_10092560 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseC,
+            ns5:ol_referencebaseT ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10092559T>C" .
+
+    ns5:ol_variant20bc6860-a5b9-11ef-b18f-0242ac130002%3AG%3AA a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10092629_10092630 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseA,
+            ns5:ol_referencebaseG ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10092629G>A" .
+
+    ns5:ol_variant20bc832c-a5b9-11ef-b18f-0242ac130002%3AC%3AT a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10092698_10092699 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseT,
+            ns5:ol_referencebaseC ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10092698C>T" .
+
+    ns5:ol_variant20bc9e48-a5b9-11ef-b18f-0242ac130002%3AC%3AT a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10092873_10092874 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseT,
+            ns5:ol_referencebaseC ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10092873C>T" .
+
+    ns5:ol_variant20bcb9e6-a5b9-11ef-b18f-0242ac130002%3AT%3AC a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10093023_10093024 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseC,
+            ns5:ol_referencebaseT ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10093023T>C" .
+
+    ns5:ol_variant20bcd4d0-a5b9-11ef-b18f-0242ac130002%3AG%3AA a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10093032_10093033 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseA,
+            ns5:ol_referencebaseG ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10093032G>A" .
+
+    ns5:ol_variant20bcf078-a5b9-11ef-b18f-0242ac130002%3AC%3AT a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10093100_10093101 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseT,
+            ns5:ol_referencebaseC ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10093100C>T" .
+
+    ns5:ol_variant20bd0afe-a5b9-11ef-b18f-0242ac130002%3AA%3AT a ns2:SO_0001059 ;
+        ns3:location ns5:ol_location10093154_10093155 ;
+        ns3:reference ns5:ol_chromosomechr19 ;
+        ns2:GENO_0000382 ns5:ol_alternatebaseT,
+            ns5:ol_referencebaseA ;
+        ns2:GENO_0000683 ns2:GENO_0000512 ;
+        ns1:identifier "NC_000019.11:g.10093154A>T" .
+
+    ns5:ol_alternatebaseA a ns2:GENO_0000002 ;
+        ns4:SIO_000300 "A" .
+
+    ns5:ol_alternatebaseC a ns2:GENO_0000002 ;
+        ns4:SIO_000300 "C" .
+
+    ns5:ol_referencebaseC a ns2:GENO_0000036 ;
+        ns4:SIO_000300 "C" .
+
+    ns5:ol_referencebaseG a ns2:GENO_0000036 ;
+        ns4:SIO_000300 "G" .
+
+    ns5:ol_referencebaseT a ns2:GENO_0000036 ;
+        ns4:SIO_000300 "T" .
+
+    ns5:ol_alternatebaseT a ns2:GENO_0000002 ;
+        ns4:SIO_000300 "T" .
+
+    ns5:ol_chromosomechr19 a ns2:SO_0000353 ;
+        ns4:SIO_000300 "chr19" .
+}
+
