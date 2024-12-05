@@ -1,0 +1,68 @@
+Synthetic1: synthetic data created for the swat4hls paper to deploy on the virtual machine demobeacon (bird)
+It is made from genomic variants from 1k genomes project, h38 genome, one (or two) genes per chromosomes extraction
+It has less than 5k variants
+The other jsons are similar to the previous simulations done for the first testings of beacon
+
+Chosen genes
+chr1	7954291	7985505	PARK7
+chr2	112829751	112836779	IL1B
+chr3	122183668	122291629	CASR
+chr4	73404287	73421482	ALB
+chr5	132656522	132661110	IL13
+chr5	52787916	52959209	ITGA1
+chr6	108559825	108684774	FOXO3
+chr7	128241278	128257629	LEP
+chr8	140657900	141002216	PTK2
+chr9	70529060	71446977	TRPM3
+chr10	32887273	33005792	ITGB1
+chr11	130068147	130144811	APLP2
+chr12	48857145	48865870	RND1
+chr13	32315086	32400268	BRCA2
+chr14	73949926	73963670	COQ6
+chr15	78921058	78949574	CTSH
+chr16	67192155	67198918	E2F4
+chr17	43044295	43170245	BRCA1
+chr18	21242232	21526112	GREB1L
+chr19	10092338	10106190	ANGPTL6
+chr20	35433347	35454746	GDF5
+chr21	25585656	25607517	MRPL39
+chr22	44752558	44862788	ARHGAP8
+chrX	70444835	70505490	DLG3
+chrY	23129355	23199010	DAZ1
+
+
+bcftools view -R swat4hls_bed.bed exon_CCDG_14151_B01_GRM_WGS_2020-08-05_allchrs.filtered.shapeit2-duohmm-phased.vcf.gz > ~/bin/beacon2-ri-tools-v2-mongo/files/vcf/files_to_read/exon_somechrs_somegenes.vcf
+
+The ri-tools-v2 was slightly modified to output the 'chr' : $numchr output in the variant location info (for the sake of the odmtp mapping)
+
+(base) bodrug-a ▶ pp-irs1-4071ylt ▶~/bin/beacon2-ri-api/deploy/data/synthetic1 
+(master)x cp ~/bin/beacon2-ri-tools-v2-mongo/files/vcf/files_to_read/genomicVariations_exon_subset4demobeacon_CCDG_14151_B01_GRM_WGS_2020-08-05_allchrs.filtered.shapeit2-duohmm-phased.json genomicVariations.json
+
+Chromosomes X and Y are absent.
+
+(base) bodrug-a ▶ pp-irs1-4071ylt ▶~/bin/beacon2-ri-api/deploy/data/synthetic1 
+(master)x python -m json.tool genomicVariations.json | grep 'chr": "chr' | sort | uniq -c
+     68                 "chr": "chr1",
+    376                 "chr": "chr10",
+    213                 "chr": "chr11",
+    107                 "chr": "chr12",
+    301                 "chr": "chr13",
+    155                 "chr": "chr14",
+    401                 "chr": "chr15",
+     64                 "chr": "chr16",
+    531                 "chr": "chr17",
+    184                 "chr": "chr18",
+     46                 "chr": "chr19",
+     41                 "chr": "chr2",
+     50                 "chr": "chr20",
+     25                 "chr": "chr21",
+    269                 "chr": "chr22",
+    260                 "chr": "chr3",
+     53                 "chr": "chr4",
+    588                 "chr": "chr5",
+    157                 "chr": "chr6",
+     90                 "chr": "chr7",
+    289                 "chr": "chr8",
+    473                 "chr": "chr9",
+
+

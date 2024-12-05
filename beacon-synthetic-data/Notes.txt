@@ -1,0 +1,13 @@
+synthetic1 dataset was generated from the 1000 Genomes Project VCF files.
+https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20201028_3202_phased/
+
+We chose the variants using coordinates of genes that can be found inside of genes.bed
+
+minisynthetic1 has only gene ANGPTL6
+
+minisynthetic1 is was used for our demo
+
+minisynthetic1 has 46 genomic variants
+
+We used beacon2-ri-tools2 to generate the genomicVariants.json files
+We used in house scripts to generate the other json files
